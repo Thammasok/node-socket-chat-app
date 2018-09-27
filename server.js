@@ -1,6 +1,4 @@
-// const path = require('path');
-// const http = require('http');
-// const publicPath = path.join(__dirname, '../public');
+const http = require('http');
 const express = require('express');
 const socketIO = require('socket.io');
 
@@ -12,8 +10,6 @@ const {isRealString} = require('./utils/validation.js');
 const {Users} = require('./utils/users.js');
 
 var users = new Users();
-
-// app.use(express.static(publicPath));
 
 io.on('connection', (socket) => {
 	console.log('New user connected');
