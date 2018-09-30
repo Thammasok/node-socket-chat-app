@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta name="viewport" content="width:device-width, initial-scale=1, user-scalable=no">
+	<link rel="stylesheet" type="text/css" href="/css/styles.css">
+</head>
+<body class="centered-form">
+
+	<div class="join-room-form">
+		<form action="/chat.html ">
+			<div class="form-field">
+				<h3>Join a Chat</h3>
+			</div>
+			<div class="form-field">
+				<a class="avatar-btn active" data-value="boy"><img src="./img/avatar/boy.png" alt="Avatar"></a>
+				<a class="avatar-btn" data-value="girl"><img src="./img/avatar/girl.png" alt="Avatar"></a>
+				<a class="avatar-btn" data-value="leader"><img src="./img/avatar/leader.png" alt="Avatar"></a>
+				<a class="avatar-btn" data-value="student"><img src="./img/avatar/student.png" alt="Avatar"></a>
+				<input type="hidden" id="avatar" name="avatar" value="boy">
+			</div>
+			<div class="form-field">
+				<label>Room Name</label>
+				<input type="text" name="room" placeholder="join room name">
+			</div>
+			<div class="form-field">
+				<label>Display Name</label>
+				<input type="text" name="name" autofocus placeholder="your display name">
+			</div>
+			<div class="form-field"></div>
+				<button class="btn-inline">Join Room</button>
+		</form>
+	</div>
+
+	<script src="/js/libs/jquery-3.3.1.min.js"></script>
+	<script>
+		$( document ).ready(function() {
+    	$('.avatar-btn').on('click', function() {
+				$('.avatar-btn').removeClass('active');
+				$(this).addClass('active');
+				$('#avatar').val($(this).attr('data-value'));
+			});
+		});
+
+		function chooseAvatar(avatar) {
+			console.log(this)
+			document.getElementsByClassName("active").classList.remove("active")
+			document.getElementById("avatar").value = avatar
+		}
+	</script>
+</body>
+</html>
