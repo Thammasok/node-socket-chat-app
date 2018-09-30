@@ -5,11 +5,13 @@ const socketIO = require('socket.io');
 var app = express();
 var server = http.createServer(app);
 var io = socketIO(server);
-const {generateMessage, generateLocationMessage} = require('./utils/message.js');
-const {isRealString} = require('./utils/validation.js');
-const {Users} = require('./utils/users.js');
+// const {generateMessage, generateLocationMessage} = require('./utils/message.js');
+// const {isRealString} = require('./utils/validation.js');
+// const {Users} = require('./utils/users.js');
 
-var users = new Users();
+// var users = new Users();
+
+app.use(express.static('web'))
 
 app.get('/', function(req, res){
   res.sendFile(__dirname + '/web/index.html');

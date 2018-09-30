@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Simple Chat</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
+    <style>
+      form { background: #000; padding: 3px; position: fixed; bottom: 0; width: 50%; }
+      #messages { list-style-type: none; margin: 0; padding: 0; }
+      #messages li { padding: 5px 10px; }
+      #messages li:nth-child(odd) { background: #eee; }
+    </style>
+  </head>
+  <body>
+    <div class="columns">
+      <div class="column is-half is-offset-one-quarter">
+        <ul id="messages"></ul>
+        <form action="/">
+          <div class="field has-addons">
+            <div class="control is-expanded">
+              <input id="m" class="input" type="text" autocomplete="off" placeholder="Send messages...">
+            </div>
+            <div class="control">
+              <button class="button is-info">
+                Send
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+  <script>
+    $(function () {
+      var socket = io();
+      $('form').submit(function(){
+        socket.emit('chat message', $('#m').val());
+        $('#m').val('');
+        return false;
+      });
+      socket.on('chat message', function(msg){
+        $('#messages').append($('<li>').text(msg));
+      });
+    });
+  </script>
+</html>
